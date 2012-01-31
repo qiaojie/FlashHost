@@ -9,6 +9,8 @@
 *.ilk
 *.exp
 *.aps
+*.sdf
+*.opensdf
 Debug/
 Release/
 bin/
