@@ -136,6 +136,56 @@ public:
 	CComQIPtr<ShockwaveFlashObjects::IShockwaveFlash> _flash;
 	CComCriticalSection _lock;
 
+	static bool rect_greater(CRect& r1, CRect& r2)
+	{
+		return r1.Width() * r1.Height() > r2.Width() * r2.Height();
+	}
+
+	void AddRect(vector<CRect>& rects, const CRect& rect)
+	{
+		for(int i = 0; i < rects.size(); ++i)
+		{
+			CRect& r1 = rects[i];
+			
+			if(r1.left >= rect.right || r1.top >= rect.bottom || 
+				r1.right < rect.left || r1.bottom < rect.top)
+				continue;
+			if(rect.right <= r1.right && rect.left >= r1.left)
+			{
+				if(r1.top <= rect.top && r1.bottom >= rect.bottom)
+					return;
+				if(r1.top > rect.top)
+					AddRect(rects, CRect(rect.left, rect.top, rect.right, r1.top));
+				if(r1.bottom < rect.bottom)
+					AddRect(rects, CRect(rect.left, r1.bottom, rect.right, rect.bottom));
+				return;
+			}
+			if(rect.left < r1.left)
+			{
+				AddRect(rects, CRect(rect.left, rect.top, r1.left, rect.bottom));
+				if(r1.top > rect.top)
+					AddRect(rects, CRect(rect.left, rect.top, rect.right, r1.top));
+				if(r1.bottom < rect.bottom)
+					AddRect(rects, CRect(rect.left, r1.bottom, rect.right, rect.bottom));
+				return;
+			}
+			if(rect.right > r1.right)
+			{
+			}
+		}
+	}
+
+	void MergeDirtyRect(vector<CRect>& dirtyRects)
+	{
+		if(dirtyRects.size() < 2)
+			return;
+		
+		sort(dirtyRects.begin(), dirtyRects.end(), rect_greater);
+		vector<CRect> rects;
+		rects.push_back(dirtyRects[0]);
+		for(int i = 1; i < dirtyRects.size(); ++i)
+			AddRect(rects, dirtyRects[i]);
+	}
 
 	MainFrame()
 	{
@@ -278,6 +328,7 @@ class FlashHost : public IFlashHost
 
 	virtual int GetSoundData(void* buf, int size)
 	{
+		return 0;
 	}
 };
 

@@ -41,11 +41,15 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>D:\SDK\Detours\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\SDK\Detours\lib.X86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Run$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>D:\SDK\Detours\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\SDK\Detours\lib.X86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Run$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

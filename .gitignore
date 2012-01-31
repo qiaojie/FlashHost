@@ -1,8 +1,5 @@
 *.suo
 *.ncb
-*.psd
-*.exe
-*.dll
 *.pdb
 *.manifest
 *.user
@@ -15,3 +12,5 @@ Debug/
 Release/
 bin/
 obj/
+Temp/
+ipch/

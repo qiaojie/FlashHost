@@ -10,8 +10,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	HRESULT hr;
 	IFlashHost* host = ::CreateFlashHost();
 	host->Create(1024, 768, true);
-	//hr = host->GetFlash()->put_Movie(L"D:\\projects\\FlashHost\\test.swf");
-	//hr = host->GetFlash()->Play();
+
 	struct PlayAction : IAction
 	{
 		void Run(ShockwaveFlashObjects::IShockwaveFlash* flash)
