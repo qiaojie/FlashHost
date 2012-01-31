@@ -7,10 +7,19 @@
 #include "AxHost.h"
 #include "interface.h"
 #include <gdiplus.h>
+#include <algorithm>
 
+using namespace std;
 #pragma comment(lib, "gdiplus.lib")
-
+#pragma comment(lib, "SoundHook.lib")
 using namespace Gdiplus;
+
+
+
+extern "C" {
+__declspec(dllimport) void GetWaveFormat(WAVEFORMATEX* format);
+__declspec(dllimport) int GetSoundData(void* buf, int size);
+};
 
 #define WM_ACTION WM_USER + 2
 #define WM_MOUSEMSG WM_USER + 3
@@ -324,11 +333,12 @@ class FlashHost : public IFlashHost
 
 	virtual void GetWaveFormat(WAVEFORMATEX* format)
 	{
+		::GetWaveFormat(format);
 	}
 
 	virtual int GetSoundData(void* buf, int size)
 	{
-		return 0;
+		return ::GetSoundData(buf, size);
 	}
 };
 

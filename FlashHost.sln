@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FlashHost", "FlashHost\FlashHost.vcxproj", "{1019485D-2898-4712-844A-CFA2FCAC770D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{307CC563-EA63-4CB4-9C5F-D1739B3D1A40} = {307CC563-EA63-4CB4-9C5F-D1739B3D1A40}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoundHook", "SoundHook\SoundHook.vcxproj", "{307CC563-EA63-4CB4-9C5F-D1739B3D1A40}"
 EndProject
