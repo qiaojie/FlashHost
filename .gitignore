@@ -1,0 +1,15 @@
+*.suo
+*.ncb
+*.psd
+*.exe
+*.dll
+*.pdb
+*.manifest
+*.user
+*.ilk
+*.exp
+*.aps
+Debug/
+Release/
+bin/
+obj/
